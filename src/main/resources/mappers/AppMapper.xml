@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhypayaso.orochi.dao.AppMapper">
+  <resultMap id="BaseResultMap" type="com.fhypayaso.orochi.bean.App">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="cover_image_url" jdbcType="VARCHAR" property="coverImageUrl" />
+    <result column="created_on" jdbcType="INTEGER" property="createdOn" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="update_on" jdbcType="INTEGER" property="updateOn" />
+    <result column="update_by" jdbcType="INTEGER" property="updateBy" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orochi_app
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fhypayaso.orochi.bean.App">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into orochi_app (`name`, `desc`, cover_image_url, 
+      created_on, created_by, update_on, 
+      update_by)
+    values (#{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{coverImageUrl,jdbcType=VARCHAR}, 
+      #{createdOn,jdbcType=INTEGER}, #{createdBy,jdbcType=INTEGER}, #{updateOn,jdbcType=INTEGER}, 
+      #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fhypayaso.orochi.bean.App">
+    update orochi_app
+    set `name` = #{name,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
+      cover_image_url = #{coverImageUrl,jdbcType=VARCHAR},
+      created_on = #{createdOn,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      update_on = #{updateOn,jdbcType=INTEGER},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, `name`, `desc`, cover_image_url, created_on, created_by, update_on, update_by
+    from orochi_app
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, `name`, `desc`, cover_image_url, created_on, created_by, update_on, update_by
+    from orochi_app
+  </select>
+</mapper>

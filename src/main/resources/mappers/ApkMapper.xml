@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhypayaso.orochi.dao.ApkMapper">
+  <resultMap id="BaseResultMap" type="com.fhypayaso.orochi.bean.Apk">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="version_code" jdbcType="VARCHAR" property="versionCode" />
+    <result column="download_url" jdbcType="VARCHAR" property="downloadUrl" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="created_on" jdbcType="INTEGER" property="createdOn" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="update_on" jdbcType="INTEGER" property="updateOn" />
+    <result column="update_by" jdbcType="INTEGER" property="updateBy" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orochi_apk
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fhypayaso.orochi.bean.Apk">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into orochi_apk (app_id, version_code, download_url, 
+      `desc`, created_on, created_by, 
+      update_on, update_by)
+    values (#{appId,jdbcType=INTEGER}, #{versionCode,jdbcType=VARCHAR}, #{downloadUrl,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR}, #{createdOn,jdbcType=INTEGER}, #{createdBy,jdbcType=INTEGER}, 
+      #{updateOn,jdbcType=INTEGER}, #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fhypayaso.orochi.bean.Apk">
+    update orochi_apk
+    set app_id = #{appId,jdbcType=INTEGER},
+      version_code = #{versionCode,jdbcType=VARCHAR},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
+      created_on = #{createdOn,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      update_on = #{updateOn,jdbcType=INTEGER},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, app_id, version_code, download_url, `desc`, created_on, created_by, update_on, 
+    update_by
+    from orochi_apk
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, app_id, version_code, download_url, `desc`, created_on, created_by, update_on, 
+    update_by
+    from orochi_apk
+  </select>
+</mapper>

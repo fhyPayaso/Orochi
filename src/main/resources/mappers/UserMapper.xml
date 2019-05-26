@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhypayaso.orochi.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.fhypayaso.orochi.bean.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="permission" jdbcType="INTEGER" property="permission" />
+    <result column="cover_image_url" jdbcType="VARCHAR" property="coverImageUrl" />
+    <result column="register_on" jdbcType="BIGINT" property="registerOn" />
+    <result column="update_on" jdbcType="BIGINT" property="updateOn" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orochi_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fhypayaso.orochi.bean.User">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into orochi_user (phone, `password`, `name`, 
+      permission, cover_image_url, register_on, 
+      update_on)
+    values (#{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{permission,jdbcType=INTEGER}, #{coverImageUrl,jdbcType=VARCHAR}, #{registerOn,jdbcType=INTEGER}, 
+      #{updateOn,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fhypayaso.orochi.bean.User">
+    update orochi_user
+    set phone = #{phone,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=INTEGER},
+      cover_image_url = #{coverImageUrl,jdbcType=VARCHAR},
+      register_on = #{registerOn,jdbcType=INTEGER},
+      update_on = #{updateOn,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, phone, `password`, `name`, permission, cover_image_url, register_on, update_on
+    from orochi_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, phone, `password`, `name`, permission, cover_image_url, register_on, update_on
+    from orochi_user
+    where phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, phone, `password`, `name`, permission, cover_image_url, register_on, update_on
+    from orochi_user
+  </select>
+</mapper>

@@ -32,18 +32,8 @@ public class FileUtil {
         if (fileName == null || "".equals(fileName)) {
             return null;
         }
-        int index = fileName.lastIndexOf(".");
+        int index = fileName.lastIndexOf(".") + 1;
         return fileName.substring(index);
     }
-
-
-
-
-
-
-
-
-
-
 
 }

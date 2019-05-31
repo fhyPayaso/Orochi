@@ -13,7 +13,7 @@ public class TimeUtil {
 
     public static String stampToDate(long s){
         String res;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         Date date = new Date(s);
         res = simpleDateFormat.format(date);
         return res;

@@ -1,10 +1,13 @@
 package com.fhypayaso.orochi.dao;
 
 import com.fhypayaso.orochi.bean.Apk;
+
 import java.util.List;
 
 public interface ApkMapper {
     int deleteByPrimaryKey(Integer id);
+
+    List<String> selectAllUrlByApp(Integer appId);
 
     int insert(Apk record);
 

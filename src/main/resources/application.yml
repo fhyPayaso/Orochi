@@ -5,7 +5,14 @@ jasypt:
   encryptor:
     password: fhyPayaso
 
+
 spring:
+  servlet:
+    # 文件大小限制
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
   datasource:
     # 基本数据库配置
     name: dev
@@ -69,3 +76,10 @@ mybatis:
     map-underscore-to-camel-case: true
     # 不忽略空字段
     call-setters-on-nulls: true
+
+
+qiniu:
+  accessKey: V4bRlWyjq34V1c2WVvd39rm4WR7qAcaTtQ0Zs7rL
+  secretKey: ot-QQmfoY_Cnnn9FZ2B2_-nNuakOIuQubvFOe1-J
+  bucket: orochi-%s
+  path: http://orochi.%s.hellofhy.cn/

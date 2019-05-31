@@ -83,3 +83,11 @@ qiniu:
   secretKey: ot-QQmfoY_Cnnn9FZ2B2_-nNuakOIuQubvFOe1-J
   bucket: orochi-%s
   path: http://orochi.%s.hellofhy.cn/
+
+
+pagehelper:
+  # 指定数据库，不指定的话会默认自动检测数据库类型
+  helper-dialect: mysql
+  # 是否启用分页合理化。如果启用，当pagenum<1时，查询第一页数据，当pagenum>pages时，查最后一页数据；否则都会返回空数据
+  reasonable: false
+  support-methods-arguments: true

@@ -1,12 +1,14 @@
 package com.fhypayaso.orochi.service;
 
-import com.fhypayaso.orochi.bean.Apk;
 import com.fhypayaso.orochi.bean.App;
 import com.fhypayaso.orochi.dao.ApkMapper;
 import com.fhypayaso.orochi.dao.AppMapper;
 import com.fhypayaso.orochi.model.exception.QueryException;
 import com.fhypayaso.orochi.model.request.AppRequest;
 import com.fhypayaso.orochi.utils.TextUtil;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,8 +77,10 @@ public class AppService {
     }
 
 
-    public List<App> queryAll() {
-        return mAppMapper.selectAll();
+    public PageInfo<App> queryAll(int offset, int count) {
+        PageHelper.offsetPage(offset, count);
+        List<App> appList = mAppMapper.selectAll();
+        return new PageInfo<>(appList);
     }
 
 
@@ -95,8 +99,6 @@ public class AppService {
         // 删除时将七牛云上的文件一起删除
         // 应用自身图片
         mUploadService.delete(app.getCoverImageUrl());
-        // 应用对应的所有apk
-//        List<Apk>
         mUploadService.deleteAll(mApkMapper.selectAllUrlByApp(id));
         // 级联删除
         mAppMapper.deleteByPrimaryKey(id);

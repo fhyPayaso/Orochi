@@ -1,4 +1,4 @@
-package com.fhypayaso.orochi.model.exception;
+package com.fhypayaso.orochi.model.base;
 
 public class ApiException extends Exception {
 

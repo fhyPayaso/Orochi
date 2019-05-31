@@ -1,6 +1,6 @@
 package com.fhypayaso.orochi.interceptor.exception;
 
-import com.fhypayaso.orochi.model.exception.ApiException;
+import com.fhypayaso.orochi.model.base.ApiException;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

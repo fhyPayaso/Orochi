@@ -1,10 +1,13 @@
 package com.fhypayaso.orochi.service;
 
 import com.fhypayaso.orochi.bean.Apk;
+import com.fhypayaso.orochi.bean.App;
 import com.fhypayaso.orochi.dao.ApkMapper;
 import com.fhypayaso.orochi.model.exception.QueryException;
 import com.fhypayaso.orochi.model.exception.UploadExecption;
 import com.fhypayaso.orochi.model.request.ApkRequest;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,8 +65,10 @@ public class ApkService {
         return apk;
     }
 
-    public List<Apk> queryAll() {
-        return mApkMapper.selectAll();
+    public PageInfo<Apk> queryAll(int offset,int count) {
+        PageHelper.offsetPage(offset, count);
+        List<Apk> appList = mApkMapper.selectAll();
+        return new PageInfo<>(appList);
     }
 
     public List<String> queryAllUrlByApp(int appId) {

@@ -3,7 +3,7 @@ package com.fhypayaso.orochi.service;
 import com.fhypayaso.orochi.bean.User;
 import com.fhypayaso.orochi.config.ConfigKey;
 import com.fhypayaso.orochi.dao.UserMapper;
-import com.fhypayaso.orochi.model.exception.ApiException;
+import com.fhypayaso.orochi.model.base.ApiException;
 import com.fhypayaso.orochi.model.exception.HasExistedException;
 import com.fhypayaso.orochi.model.exception.QueryException;
 import com.fhypayaso.orochi.utils.EncryptUtil;

@@ -3,6 +3,8 @@ package com.fhypayaso.orochi.controller;
 import com.fhypayaso.orochi.bean.App;
 import com.fhypayaso.orochi.dao.AppMapper;
 import com.fhypayaso.orochi.model.base.ApiResponse;
+import com.fhypayaso.orochi.model.exception.FileTypeException;
+import com.fhypayaso.orochi.model.request.AppRequest;
 import com.fhypayaso.orochi.service.AppService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,8 @@ public class AppController {
     AppService mAppService;
 
     @PostMapping("/create")
-    public ApiResponse createApp(@RequestBody App app) {
-        mAppService.create(app);
+    public ApiResponse createApp(AppRequest request) throws Exception {
+        mAppService.create(request);
         return new ApiResponse();
     }
 

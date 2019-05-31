@@ -7,9 +7,9 @@
     <result column="version_code" jdbcType="VARCHAR" property="versionCode" />
     <result column="download_url" jdbcType="VARCHAR" property="downloadUrl" />
     <result column="desc" jdbcType="VARCHAR" property="desc" />
-    <result column="created_on" jdbcType="INTEGER" property="createdOn" />
+    <result column="created_on" jdbcType="BIGINT" property="createdOn" />
     <result column="created_by" jdbcType="INTEGER" property="createdBy" />
-    <result column="update_on" jdbcType="INTEGER" property="updateOn" />
+    <result column="update_on" jdbcType="BIGINT" property="updateOn" />
     <result column="update_by" jdbcType="INTEGER" property="updateBy" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

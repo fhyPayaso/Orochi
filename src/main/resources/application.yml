@@ -69,4 +69,3 @@ mybatis:
     map-underscore-to-camel-case: true
     # 不忽略空字段
     call-setters-on-nulls: true
-
